@@ -1,6 +1,6 @@
 # GEDEM'S DATAPLAYGROUND
 
-[<img src="http://gedemced.uab.cat/images/logotipCED_nuevo.png" width="245px" height="150px" />](http://ced.uab.es)
+[<img src="http://gedemced.uab.cat/images/logotipCED_nuevo.png" width="260px" height="150px" />](http://ced.uab.es)
 
 #### REPOSITORY UNDER CONSTRUCTION ####
 
