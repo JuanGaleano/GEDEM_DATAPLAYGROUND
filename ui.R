@@ -12,6 +12,7 @@ load("./data/CATFINAL2014.Rdata")
 load("./data/CATSECC2014.Rdata")
 load("./data/CAT_NAC15.Rdata")
 
+#### SOME MAKEUP ####
 
 x1$EXT<-NULL
 x1$POP_TOTAL_EXT <- x1$POP_TOTAL-x1$POP_SPANISH
@@ -107,7 +108,7 @@ shinyUI(navbarPage("Catalonia",
                                             allowTransparency="true")
                                 ))),
                    
-                   ### MOTION CHART
+                   #### MOTION CHART PAGE ####
                    
                    tabPanel(h5(span("Motion Chart",style = "color:#585858" )),                          
                             fluidPage(
@@ -144,7 +145,7 @@ shinyUI(navbarPage("Catalonia",
                                            p(a("Google Terms of Use", href="https://developers.google.com/terms/")),
                                            p(em("GEDEM Data-playground \nVersion 1.1."),align = "right"),
                                            p(em("Last Update: 07/02/2016."),align = "right")),
-                                  tabPanel(h6('Tutorial on Motion Chart'),
+                                  tabPanel(h6('Tutorial on Motion Chart'), ### TUTORIAL MOTION CHARTS
                                            br(),
                                            p("Explore multiple variables over time. The maximum capacity of simultaneous representation 
                                              consists of four variables (one which is plotted on the ", em("X"), "axis, one on the ", em("Y"), "axis 
@@ -187,9 +188,8 @@ shinyUI(navbarPage("Catalonia",
                                              Montenegro, Macedonia Ukraine and Cyprus."),
                                            p("*Others: residual category that groups those people who could not prove their place of birth when they registered at the municipality.")
                                            ))))),
-                  
                    
-                   ### POPULATION PYRAMID PAGE ###
+                   #### POPULATION PYRAMID PAGE ####
                    
                    tabPanel(h5(span("Population Pyramid",style = "color:#585858" )), 
                             sidebarPanel(
@@ -211,7 +211,6 @@ shinyUI(navbarPage("Catalonia",
                               h5(strong("Share")),
                               p(includeHTML("http://gedemced.uab.cat/images/TWEET.htm"))
                             ),
-                            
                             ### Main Panel
                             mainPanel(
                               # Show the plot
@@ -221,7 +220,7 @@ shinyUI(navbarPage("Catalonia",
                               p(em("Last Update: 07/02/2016."),align = "right")
                             )),
                    
-                   ### POPULATION COMPOSITION PAGE ###
+                   #### POPULATION COMPOSITION PAGE ####
                    
                    tabPanel(h5(span("Population by municipality",style = "color:#585858" )),     
                             fluidPage(
@@ -285,9 +284,8 @@ shinyUI(navbarPage("Catalonia",
                                            p("*Others: those people who could not prove their place of 
                                              birth when they registered at the municipality."))
                                            )))),
-                   
-                   
-                   #### mapas
+                                           
+                   #### LEAFLET MAPS PAGE ####
                    
                    tabPanel(h5(span("Population by census tracts",
                                            style = "color:#585858" )),                          
@@ -324,9 +322,8 @@ shinyUI(navbarPage("Catalonia",
                                            p(em("GEDEM Data-playground \nVersion 1.1."),align = "right"),
                                            p(em("Last Update: 07/02/2016."),align = "right"))
                                 )))),
-                   
-                   
-                   #### mapas2
+  
+                   #### REACTIVE LOCATION QUOTIENTS MAPS ###
                    
                    tabPanel(h5(span("Location quotiens (foreign-born groups)",
                                     style = "color:#585858" )),                          
@@ -339,9 +336,6 @@ shinyUI(navbarPage("Catalonia",
                                 selectizeInput("Nom_Mun1", "Choose one or more municipalities from the list or type their names:", 
                                                choices=unique(CATSECC2014@data$Nom_Mun1),selected = "Barcelona",
                                                multiple = TRUE),
-                               # selectizeInput("Prop", "Filter:", 
-                                #               choices=choices, selected = "Select All",multiple = TRUE
-                                #),
                                 h5(strong("Download data:")),
                                 p("Download and re-use data associated with the maps as a *csv or *txt file. 
                                   Data shows the location quotients and composition of the population by region of birth of each census tract for the 
@@ -409,7 +403,8 @@ shinyUI(navbarPage("Catalonia",
                                            p(em("Last Update: 07/02/2016."),align = "right"))
                                   
                                 )))),
-                   ### RESIDENTIAL SEGREGATION PAGE ###
+                                
+                   #### RESIDENTIAL SEGREGATION PAGE ####
                    
                    tabPanel(h5(span("Residential Segregation Indexes by municipality",style = "color:#585858" )),          
                             sidebarPanel(
@@ -503,7 +498,7 @@ shinyUI(navbarPage("Catalonia",
                                            )))
                                            )),
                    
-                   ### POPULATION DIVERSITY PAGE ###
+                   #### POPULATION DIVERSITY PAGE ####
                    
                    tabPanel(h5(span("Population diversity by municipality",style = "color:#585858" )),                          
                             fluidPage(
@@ -566,7 +561,7 @@ shinyUI(navbarPage("Catalonia",
                                            )
                                 )),
                    
-                   #### BUILD YOUR OWN DATA TABLE
+                   #### BUILD YOUR OWN DATA TABLE PAGE ####
                    
                    tabPanel(h5(span("Build your own data table",style = "color:#585858" )),  
                             fluidPage(
@@ -618,6 +613,9 @@ shinyUI(navbarPage("Catalonia",
                                              Montenegro, Macedonia Ukraine and Cyprus."),
                                            p("*Others: residual category that groups those people who could not prove their place of birth when they registered at the municipality.")
                                            ))))),
+                                           
+                   #### SELECT OTHER AUTONOMOUS COMMUNITY PAGE ####
+                   
                    tabPanel(h5(span("Change Autonomous Community",style = "color:#585858" )),  
                             mainPanel(
                               h4(strong("Select other Autonomous Communities",style = "color:#585858")),
