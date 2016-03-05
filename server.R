@@ -11,6 +11,8 @@ load("./data/CATFINAL2014.Rdata")
 load("./data/CATSECC2014.Rdata")
 load("./data/CAT_NAC15.Rdata")
 
+### SOME MAKEUP
+
 x1$EXT<-NULL
 x1 <-  x1[order(x1$YEAR),] 
 x1$POP_TOTAL_EXT <- x1$POP_TOTAL-x1$POP_SPANISH
@@ -36,12 +38,11 @@ CATSECC2014@data$Nom_Mun<-paste(as.character(CATSECC2014@data$Nom_Mun), sep="")
 choices <- c("Select All", unique(levels(CATSECC2014@data$Prop)))
 CATSECC2014@data$Nom_Mun1<-CATSECC2014@data$Nom_Mun
 
-
-
+############################################################################################
 
 shinyServer(function(input, output,session) {  
   
-  #### MOTION CHART ###
+  #### MOTION CHART (googleVis package) ####
   
   output$ComposicionPlot <-renderGvis({ 
     Mun <- x1[x1$PROVINCE %in% input$PROVINCE, c(1:14,15:16,32,38)]
@@ -57,7 +58,7 @@ shinyServer(function(input, output,session) {
                     chartid="GEDEM_2014")
   })
   
-  #### DOWNLOAD DATA ###
+  #### DOWNLOAD DATA MOTION CHART ####
   
   output$downloadData <- downloadHandler(
     
@@ -77,8 +78,8 @@ shinyServer(function(input, output,session) {
                   row.names = FALSE)
     })
   
-  
-  ####maps
+  ### MAPS (leaflet package) ####
+  ### Population by census tract (data:YEAR 2014) (%) foreign-born by census tract
   
   output$mymap <- renderLeaflet({
     Munz <- reactive({CATSECC2014[CATSECC2014@data$Nom_Mun %in% input$Nom_Mun &
@@ -143,15 +144,12 @@ shinyServer(function(input, output,session) {
   })
   observe({
     
-    
     leafletProxy("mymap", data = df) %>%
       addLayersControl(
         baseGroups = c("OSM (default)",  "Esri.WorldImagery"))
-    
-    
     })
   
-  #### DOWNLOAD DATA ###
+  #### DOWNLOAD DATA (leaflet maps) ####
   
   output$downloadDataz <- downloadHandler(
     
@@ -171,8 +169,7 @@ shinyServer(function(input, output,session) {
                   row.names = FALSE)
     })
   
-  
-  ####maps2: LATIN AMERICA
+  #### REACTIVE LOCATION QUOTIENS: LATIN AMERICA
   output$mymap1 <- renderLeaflet({
     Munz1 <- reactive({CATSECC2014[CATSECC2014@data$Nom_Mun1 %in% input$Nom_Mun1,  ]})
     
@@ -248,26 +245,14 @@ shinyServer(function(input, output,session) {
   }) 
   observe({
     
-    
     leafletProxy("mymap1", data = df) %>%
       addLayersControl(
         baseGroups = c("CartoDB.Positron"))
-    
-    
   })
   
-  ####maps2: WESTERN EUROPE
+  #### REACTIVE LOCATION QUOTIENS: WESTERN EUROPE
   output$mymap2 <- renderLeaflet({
     Munz1 <- reactive({CATSECC2014[CATSECC2014@data$Nom_Mun1 %in% input$Nom_Mun1,  ]})
-    
-    
-    #observe({
-    # if ("Select All" %in% input$Prop) {
-    # choose all the choices _except_ "Select All"
-    #    selected_choices <- setdiff(choices, "Select All")
-    #   updateSelectInput(session, "Prop", selected = selected_choices)
-    #   }
-    #  }) 
     
     df1<- Munz1() 
     df1$CL_WE<-with(df1@data,(WesternEurope/Totalpop)/(sum(WesternEurope)/sum(Totalpop)))
@@ -311,8 +296,6 @@ shinyServer(function(input, output,session) {
                           "<br><strong>Total population in selected area: </strong>",
                           sum(df1$Totalpop))
     
-    
-    
     leaflet(df1) %>%
       addProviderTiles("CartoDB.Positron")%>%
      # addTiles(group = "OSM (default)") %>%
@@ -332,27 +315,15 @@ shinyServer(function(input, output,session) {
   }) 
   observe({
     
-    
     leafletProxy("mymap2", data = df) %>%
       addLayersControl(
         baseGroups = c("CartoDB.Positron"))
-    
-    
   })
   
-  ####maps2: EASTERN EUROPE
+  #### REACTIVE LOCATION QUOTIENS: EASTERN EUROPE
   output$mymap3 <- renderLeaflet({
     Munz1 <- reactive({CATSECC2014[CATSECC2014@data$Nom_Mun1 %in% input$Nom_Mun1,  ]})
-    
-    
-    #observe({
-    # if ("Select All" %in% input$Prop) {
-    # choose all the choices _except_ "Select All"
-    #    selected_choices <- setdiff(choices, "Select All")
-    #   updateSelectInput(session, "Prop", selected = selected_choices)
-    #   }
-    #  }) 
-    
+
     df1<- Munz1() 
     df1$CL_EE<-with(df1@data,(EasternEurope/Totalpop)/(sum(EasternEurope)/sum(Totalpop)))
     
@@ -395,8 +366,6 @@ shinyServer(function(input, output,session) {
                           "<br><strong>Total population in selected area: </strong>",
                           sum(df1$Totalpop))
     
-    
-    
     leaflet(df1) %>%
       addProviderTiles("CartoDB.Positron")%>%
       # addTiles(group = "OSM (default)") %>%
@@ -415,28 +384,15 @@ shinyServer(function(input, output,session) {
                 opacity = 1)
   }) 
   observe({
-    
-    
     leafletProxy("mymap3", data = df) %>%
       addLayersControl(
         baseGroups = c("CartoDB.Positron"))
-    
-    
   })
   
-  ####maps2: AFRICA
+  #### REACTIVE LOCATION QUOTIENS: AFRICA
   output$mymap4 <- renderLeaflet({
     Munz1 <- reactive({CATSECC2014[CATSECC2014@data$Nom_Mun1 %in% input$Nom_Mun1,  ]})
-    
-    
-    #observe({
-    # if ("Select All" %in% input$Prop) {
-    # choose all the choices _except_ "Select All"
-    #    selected_choices <- setdiff(choices, "Select All")
-    #   updateSelectInput(session, "Prop", selected = selected_choices)
-    #   }
-    #  }) 
-    
+  
     df1<- Munz1() 
     df1$CL_AF<-with(df1@data,(Africa/Totalpop)/(sum(Africa)/sum(Totalpop)))
     
@@ -478,9 +434,7 @@ shinyServer(function(input, output,session) {
                           sum(df1$Africa),
                           "<br><strong>Total population in selected area: </strong>",
                           sum(df1$Totalpop))
-    
-    
-    
+                          
     leaflet(df1) %>%
       addProviderTiles("CartoDB.Positron")%>%
       # addTiles(group = "OSM (default)") %>%
@@ -500,27 +454,15 @@ shinyServer(function(input, output,session) {
   }) 
   observe({
     
-    
     leafletProxy("mymap4", data = df) %>%
       addLayersControl(
         baseGroups = c("CartoDB.Positron"))
-    
-    
   })
   
-  ####maps2: ASIA
+  #### REACTIVE LOCATION QUOTIENS: ASIA
   output$mymap5 <- renderLeaflet({
     Munz1 <- reactive({CATSECC2014[CATSECC2014@data$Nom_Mun1 %in% input$Nom_Mun1,  ]})
-    
-    
-    #observe({
-    # if ("Select All" %in% input$Prop) {
-    # choose all the choices _except_ "Select All"
-    #    selected_choices <- setdiff(choices, "Select All")
-    #   updateSelectInput(session, "Prop", selected = selected_choices)
-    #   }
-    #  }) 
-    
+
     df1<- Munz1() 
     df1$CL_AS<-with(df1@data,(Asia/Totalpop)/(sum(Asia)/sum(Totalpop)))
     
@@ -563,8 +505,6 @@ shinyServer(function(input, output,session) {
                           "<br><strong>Total population in selected area: </strong>",
                           sum(df1$Totalpop))
     
-    
-    
     leaflet(df1) %>%
       addProviderTiles("CartoDB.Positron")%>%
       # addTiles(group = "OSM (default)") %>%
@@ -584,16 +524,11 @@ shinyServer(function(input, output,session) {
   }) 
   observe({
     
-    
     leafletProxy("mymap5", data = df) %>%
       addLayersControl(
         baseGroups = c("CartoDB.Positron"))
-    
-    
   })
-  
-  
-  #### DOWNLOAD DATA ###
+  #### DOWNLOAD DATA LOCATION QUOTIENTS###
   
   output$downloadDataz1 <- downloadHandler(
     
@@ -645,7 +580,7 @@ shinyServer(function(input, output,session) {
       write.table(df1@data[df1@data$Nom_Mun1 %in% input$Nom_Mun1, c(1:17,21:30)], file, sep = sep,
                   row.names = FALSE)
     })
-  #### POPULATION COMPOSITION PLOTS ###
+  #### POPULATION COMPOSITION PLOTS (GoogleVis and ggplot2 packages) ###
   
   output$ComposicionPlot2 <-renderGvis({ 
     Mun2 <- x1[x1$MUNICIPALITY %in% input$MUNICIPALITY, ]
@@ -688,7 +623,7 @@ shinyServer(function(input, output,session) {
                                  isStacked=TRUE))
     })
   
-  #### DOWNLOAD DATA ###
+  #### DOWNLOAD DATA POPULATION COMPOSITION PLOTS (GoogleVis and ggplot2 packages) ####
   
   output$downloadData3 <- downloadHandler(
     
@@ -709,7 +644,7 @@ shinyServer(function(input, output,session) {
                   file, sep = sep,row.names = FALSE)
     })
   
-  #### DOWNLOAD IMAGE STACKED BARS 
+  #### DOWNLOAD IMAGE STACKED BARS ###
   
   output$downloadPlot2 <- downloadHandler(
     filename = function() {paste("Stacked bar plot1", paste(input$MUNICIPALITY, '.png', sep=''), sep=" ")},
@@ -769,7 +704,7 @@ shinyServer(function(input, output,session) {
       dev.off()
     })
   
-  #### PIE CHARTS FOREIGN BORN POP
+  #### PIE CHARTS FOREIGN BORN POP ####
   
   output$ComposicionPlot6 <-renderGvis({ 
     Mun6 <- x1[x1$MUNICIPALITY %in% input$MUNICIPALITY, ]
@@ -809,10 +744,7 @@ shinyServer(function(input, output,session) {
                               titleTextStyle: {color: 'black',fontName:'Courier'}}"))
   })
   
-  
-  ########################################
-  #ranking pasises de nacimiento
-  ######################################
+  #### TOP 10 FOREIGN-BORN GROUPS BY MUNICIPALITY (plotly package) ####
   
   output$ComposicionPlotly2 <-renderPlotly({ 
     Munplotly2<-CAT_NAC15[CAT_NAC15$MUNICIPALITY %in% input$MUNICIPALITY, ]
@@ -832,8 +764,7 @@ shinyServer(function(input, output,session) {
     p
   }) 
   
-  
-  #### RESIDENTIAL SEGREGATION PLOTS ###
+  #### RESIDENTIAL SEGREGATION PLOTS (GoogleVis and ggplot2 packages) ###
   
   output$ComposicionPlot4 <-renderGvis({ 
     Mun4 <- x1[x1$MUNICIPALITY2 %in% input$MUNICIPALITY2, ]
@@ -901,7 +832,7 @@ shinyServer(function(input, output,session) {
     })
   
   
-  #### DOWNLOAD DATA RESIDENTIAL SEGREGATION ###
+  #### DOWNLOAD DATA RESIDENTIAL SEGREGATION ####
   
   output$downloadData4 <- downloadHandler(
     
@@ -924,7 +855,7 @@ shinyServer(function(input, output,session) {
                               "[Isolation Index]Western Europe","[Isolation Index]Eastern Europe","[Isolation Index]Africa","[Isolation Index]Asia") ], 
                   file, sep = sep,row.names = FALSE)
     })
-  #### DOWNLOAD IMAGE STACKED BARS 
+  #### DOWNLOAD IMAGE LINE PLOTS ####
   
   output$downloadPlotDIS <- downloadHandler(
     filename = function() {paste("Dissimilarity plot", paste(input$MUNICIPALITY2, '.png', sep=''), sep=" ")},
@@ -1012,7 +943,8 @@ shinyServer(function(input, output,session) {
               ylab("Isolation Index"))
       dev.off()
     })
-  #### POPULATION DIVERSITY PLOTS ###
+    
+  #### POPULATION DIVERSITY PLOTS (GoogleVis package) ####
   
   output$ComposicionPlot9 <-renderGvis({ 
     
@@ -1050,11 +982,8 @@ shinyServer(function(input, output,session) {
     
     })
   
-  
-  
-  #### POPULATION PYRAMID PLOTS ###
-  
-  
+  #### POPULATION PYRAMID PLOTS (ggplot2 package) ###
+  #### DOWNLOAD DATA FOR EACH YEAR 
   output$downloadDataPy <- downloadHandler(
     
     # This function returns a string which tells the client
@@ -1071,7 +1000,7 @@ shinyServer(function(input, output,session) {
       # Write to a file specified by the 'file' argument
       write.table(CATFINAL2014[CATFINAL2014$year %in% input$year, ], file, sep = sep, row.names = FALSE)
     })
-  
+  #############################
   output$pyramidrel <- renderPlot({
     
     CATFINAL2014<-CATFINAL2014[CATFINAL2014$year %in% input$year, ]
@@ -1224,29 +1153,7 @@ shinyServer(function(input, output,session) {
       
       dev.off()
     })
-  #### COMPOSICION POR EDADES
- # output$ComposicionEDADES <-renderGvis({ 
-#    CATFINAL2014<-CATFINAL2014[CATFINAL2014$year %in% input$year, ]
-#    POP <- CATFINAL2014 %>% group_by(Age_Groups) %>%  summarise( Spanish = sum(Spain), 
- #                                                            Foreign = sum(Foreign))
-#    colnames(POP)<- c("Age_Groups", "Spanish-born", "Foreign-born")
-#    gvisBarChart(POP, xvar="Age_Groups", yvar=c("Spanish-born","Foreign-born"),
- #                options=list(height= 400,
-  #                            width= 850,
-  #                            backgroundColor='white',
-  #                            chartArea.backgroundColor="red",
-  #                            legend="{position: 'bottom', 
-  #                            textStyle: {color: 'blue', fontSize: 12}}",
-  #                            legend.alignment="center",
-  #                            title= "Population Composition by age groups",
-  #                            vAxis= "{format:'#', 
-  #                            titleTextStyle: {color: 'black',fontName:'Courier'}}",
-  #                            hAxis= "{title: 'Population',
-  #                            format:'#', 
-  #                            titleTextStyle: {color: 'black',fontName:'Courier'}}",
-  #                            isStacked=FALSE))
-    #})
-  
+ 
   #### BUILT YOUR POWN DATA TABLE
   
   updateSelectizeInput(session, "MUNICIPALITY6",
