@@ -15,4 +15,11 @@ Users can download and reuse data (as csv or txt files) and plots (as png files)
 
 The project is part of my PhD in Demography at the [Centre d'Estudis Demogràfics (CED)](http://ceu.uab.es) and the Autonomous University of Barcelona.
 
+ GEDEM’s data-playground uses data from the Municipal Registers of inhabitants, which is disseminated by [National Statistics Institute (INE)](http://www.ine.es/). All remaining errors are the responsibility of the authors alone.
+                            
+### Suggested Citation: 
+GEDEM’s data-playground has been launched as a free online database (Open Access). The idea is that data and results from ongoing 
+                                  research can go out and impact policymakers, civil society, academic and media circles
+                                  Here is our suggested citation if you use the database: **Centre d'Estudis Demogràfics (2015), *GEDEM Data-playground Version 1.1*. Available at http://gedemced.uab.cat/en/",href="http://gedemced.uab.cat/en/**. The database for this project is under license Creative Commons Attribution 4.0 International.
+
 [***Juan Galeano***](http://ced.uab.es/directori/juan-galeano/) 
