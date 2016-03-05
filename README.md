@@ -20,6 +20,6 @@ The project is part of my PhD in Demography at the [Centre d'Estudis Demogràfic
 ### Suggested Citation: 
 GEDEM’s data-playground has been launched as a free online database (Open Access). The idea is that data and results from ongoing 
                                   research can go out and impact policymakers, civil society, academic and media circles
-                                  Here is our suggested citation if you use the database: **Centre d'Estudis Demogràfics (2015), *GEDEM Data-playground Version 1.1*. Available at http://gedemced.uab.cat/en/",href="http://gedemced.uab.cat/en/**. The database for this project is under license Creative Commons Attribution 4.0 International.
+                                  Here is our suggested citation if you use the database: **Centre d'Estudis Demogràfics (2015), *GEDEM Data-playground Version 1.1*. Available at http://gedemced.uab.cat/en/**. The database for this project is under license Creative Commons Attribution 4.0 International.
 
 [***Juan Galeano***](http://ced.uab.es/directori/juan-galeano/) 
