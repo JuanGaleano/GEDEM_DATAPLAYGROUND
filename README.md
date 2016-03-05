@@ -1,8 +1,12 @@
-# DATAPLAYGROUND
+# GEDEM'S DATAPLAYGROUND
+
+[<img src="http://gedemced.uab.cat/images/logotipCED_nuevo.png" width="300px" height="300px" />](http://ced.uab.es)
 
 #### REPOSITORY UNDER CONSTRUCTION ####
 
-Shiny r-code for GEDEM's Data-playground. Available [***HERE***](https://gedemced.shinyapps.io/DP_CATALONIA/)
+Shiny r-code for GEDEM's Data-playground. 
+
+[**ACCES THE DATAPLAYGROUND**](https://gedemced.shinyapps.io/DP_CATALONIA/)
 
 GEDEM's data-playground allows users to explore, visualize and download population data for each municipality 
                                   in Spain (over 8,000 municipalities) since 2000. The database also includes computations of various indices 
