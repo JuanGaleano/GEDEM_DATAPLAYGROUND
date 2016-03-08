@@ -4,7 +4,8 @@
 
 #### REPOSITORY UNDER CONSTRUCTION ####
 
-Shiny r-code for GEDEM's Data-playground. 
+This repository provides the shiny r-code for the elaboration of GEDEM's Data-playground. 
+The project is part of my PhD in Demography at the [Centre d'Estudis Demogràfics (CED)](http://ceu.uab.es) and Geography Department of the Autonomous University of Barcelona.
 
 [**ACCES THE DATAPLAYGROUND**](https://gedemced.shinyapps.io/DP_CATALONIA/)
 
