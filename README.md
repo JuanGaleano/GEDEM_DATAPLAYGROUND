@@ -23,6 +23,6 @@ GEDEM’s data-playground has been launched as a free online database (Open Acce
 
 ### Credits:
 GEDEM (Group for Demographic and Migration Studies) at the [Center for Demographic Studies(CED)](http://ced.uab.es/),Barcelona, Spain.
-Coordination: [**Andreu Domingo**] (http://gedemced.uab.cat/documents-cv/cv-andreu-domingo.pdf")    
-Data management and computations: [**Juan Galeano**](http://gedemced.uab.cat/documents-cv/cv-juan-galeano1.pdf"), and [**Albert Sabater**] (https://www.st-andrews.ac.uk/gsd/people/asc6/")     
+Coordination: [**Andreu Domingo**](http://gedemced.uab.cat/documents-cv/cv-andreu-domingo.pdf")    
+Data management and computations: [**Juan Galeano**](http://gedemced.uab.cat/documents-cv/cv-juan-galeano1.pdf"), and [**Albert Sabater**](https://www.st-andrews.ac.uk/gsd/people/asc6/")     
 Web Interface (R & Shiny): [**Juan Galeano**](http://gedemced.uab.cat/documents-cv/cv-juan-galeano1.pdf")
