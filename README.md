@@ -1,7 +1,5 @@
 # GEDEM'S DATAPLAYGROUND
 
-[<img src="http://gedemced.uab.cat/images/logotipCED_nuevo.png" width="260px" height="150px" />](http://ced.uab.es)
-
 This repository provides the shiny r-code for the elaboration of GEDEM's Data-playground. 
 The project is part of my PhD in Demography at the [Centre d'Estudis Demogràfics (CED)](http://ceu.uab.es) and Geography Department of the Autonomous University of Barcelona.
 
